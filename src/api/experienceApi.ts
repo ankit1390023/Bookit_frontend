@@ -1,11 +1,11 @@
 
-import axios from 'axios';
 import type {
   Experience,
   ExperienceDetails,
   ApiResponse,
 } from '../types';
-// const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+import { axiosInstance } from './config';
+
 export const experienceApi = {
   // Get all experiences with optional filters
   getAllExperiences: async (params: {
@@ -23,9 +23,9 @@ export const experienceApi = {
     if (params?.minPrice !== undefined) queryParams.append('minPrice', params.minPrice.toString());
     if (params?.maxPrice !== undefined) queryParams.append('maxPrice', params.maxPrice.toString());
 
-    const url = `http://localhost:5000/api/experiences${queryParams.toString() ? `?${queryParams.toString()}` : ''}`;
+    const url = `/experiences${queryParams.toString() ? `?${queryParams.toString()}` : ''}`;
     
-    const response = await axios.get<ApiResponse<Experience[]>>(url);
+    const response = await axiosInstance.get<ApiResponse<Experience[]>>(url);
 
     // Transform the response to ensure proper data types
     if (response.data && response.data.data) {
@@ -47,16 +47,16 @@ export const experienceApi = {
 
   // Get single experience by ID
   getExperienceById: async (id: number)=> {
-    const response = await axios.get<ApiResponse<ExperienceDetails>>(
-      `http://localhost:5000/api/experiences/${id}`
+    const response = await axiosInstance.get<ApiResponse<ExperienceDetails>>(
+      `/experiences/${id}`
     );
     return response.data;
   },
 
   // Get available dates for an experience
   getAvailableDates: async (id: number)=> {
-    const response = await axios.get<ApiResponse<string[]>>(
-      `http://localhost:5000/api/experiences/${id}`
+    const response = await axiosInstance.get<ApiResponse<string[]>>(
+      `/experiences/${id}`
     );
     return response.data;
   },

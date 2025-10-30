@@ -1,12 +1,5 @@
-import axios from 'axios';
 import type { PromoCodeRequest, PromoCodeValidation } from '../types';
-
-const axiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:3000/api',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
+import { axiosInstance } from './config';
 
 export const promoApi = {
   // Validate a promo code

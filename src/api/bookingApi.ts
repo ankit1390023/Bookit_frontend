@@ -1,13 +1,5 @@
-
-import type { Booking, BookingFormData, ApiResponse } from '../types';
-import axios from 'axios';
-
-const axiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:3000/api',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
+import type { ApiResponse, BookingFormData, Booking } from '../types';
+import { axiosInstance } from './config';
 
 export const bookingApi = {
   // Create a new booking

@@ -37,7 +37,7 @@ const ExperienceCard = ({ experience }: ExperienceCardProps) => {
         {/* Price + Button */}
         <div className="flex justify-between items-center pt-2">
           <p className="text-gray-900 text-lg font-bold">
-            <span className="text-gray-800 text-base font-medium">From </span>${Math.ceil(experience.price)}
+            <span className="text-gray-800 text-base font-medium">From </span>₹{Math.ceil(experience.price)}
           </p>
           <Link
             to={`/experience/${experience.id}`}
